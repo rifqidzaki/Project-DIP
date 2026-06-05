@@ -57,13 +57,27 @@ graph LR
 
 ---
 
-## 📊 Hasil dan Performa Model
+## 📊 Visualisasi & Hasil Performa Model
+
+### Exploratory Data Analysis (EDA)
+<div align="center">
+  <img src="images/wordcloud.png" alt="Wordcloud Kata Dominan" width="600"/>
+  <br>
+  <i>Visualisasi WordCloud: Kosakata yang paling dominan digunakan pengguna</i>
+</div>
+
+### Evaluasi Klasifikasi (Logistic Regression)
 Model regresi logistik yang dilatih dievaluasi secara komprehensif untuk menguji keampuhan prediksinya. Evaluasi metrik yang disediakan mencakup:
 
 - **Accuracy Score**: Proporsi prediksi sentimen yang berhasil ditebak dengan benar.
 - **Classification Report**: Laporan terperinci mengenai metrik *Precision, Recall,* dan *F1-Score* untuk mengevaluasi bias/kepekaan model pada setiap kelas label.
 - **Confusion Matrix**: Visualisasi menggunakan *Heatmap* untuk menganalisa peta penyebaran kesalahan dan keberhasilan klasifikasi matriks model.
 - **ROC-AUC Score**: Menggunakan parameter komparasi multilabel *One-vs-Rest (OVR)* berbobot rata-rata untuk pengukuran probabilistik statistik.
+
+<div align="center">
+  <img src="images/sentiment_distribution.png" alt="Distribusi Sentimen" width="400"/>
+  <img src="images/confusion_matrix.png" alt="Confusion Matrix" width="400"/>
+</div>
 
 ---
 
