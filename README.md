@@ -1,47 +1,104 @@
-# Analisis Sentimen Ulasan Aplikasi Gojek 🛵
+<div align="center">
+  
+# 🛵 Gojek Review Sentiment Analysis
+**End-to-End Natural Language Processing (NLP) Pipeline with Logistic Regression**
 
-Proyek ini adalah implementasi alur kerja *Data Science* *end-to-end* yang berfokus pada analisis sentimen ulasan pengguna aplikasi Gojek di Google Play Store. Proyek ini mengekstraksi ulasan, melakukan pembersihan teks, dan mengklasifikasikan sentimen pengguna ke dalam tiga kategori (Positif, Netral, dan Negatif) menggunakan algoritma **Logistic Regression**.
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)](https://www.python.org/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange?style=flat-square&logo=scikit-learn)](https://scikit-learn.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=flat-square&logo=pandas)](https://pandas.pydata.org/)
+[![NLTK & Sastrawi](https://img.shields.io/badge/NLP-NLTK%20%7C%20Sastrawi-green?style=flat-square)](#)
+[![Status](https://img.shields.io/badge/Status-Completed-success?style=flat-square)](#)
 
-## 📌 Fitur Utama
-1. **Data Scraping**: Pengambilan ulasan terbaru secara otomatis dari halaman Google Play Store.
-2. **Text Preprocessing Lengkap**: Pembersihan data (*Case folding*, pembersihan URL/simbol), normalisasi kata gaul/slang Indonesia, tokenisasi, *stopword removal*, dan *stemming* (menggunakan NLTK & Sastrawi).
-3. **Exploratory Data Analysis (EDA)**: Visualisasi dengan *WordCloud* dan distribusi proporsi sentimen.
-4. **Machine Learning Modeling**: Pembobotan kata menggunakan metode TF-IDF lalu dilatih menggunakan algoritma *Logistic Regression* (Multinomial).
-5. **Evaluasi Komprehensif**: Evaluasi metrik akurasi, *Classification Report* (Precision, Recall, F1-Score), kurva ROC-AUC, dan pemetaan kesalahan menggunakan *Confusion Matrix*.
-6. **Feature Importance**: Penarikan kata-kata yang paling berpengaruh (*Top 10 Features*) pada masing-masing sentimen.
+</div>
 
-## 🛠️ Teknologi yang Digunakan
-- **Bahasa Pemrograman**: Python
-- **Data Manipulation**: Pandas, NumPy
-- **Natural Language Processing (NLP)**: NLTK, Sastrawi
-- **Machine Learning**: Scikit-Learn
-- **Visualisasi**: Matplotlib, Seaborn, WordCloud
-- **Environment**: Jupyter Notebook
+<br>
 
-## 📂 Struktur Direktori
-```text
-.
-├── data/
-│   ├── raw/                 # Data ulasan mentah hasil scraping
-│   └── processed/           # Data teks bersih hasil tahapan preprocessing
-├── Tubes_DIP_LogisticRegression.ipynb  # Kode sumber / Notebook utama 
-├── requirements.txt         # Daftar spesifikasi dependensi library Python
-└── README.md                # Dokumentasi proyek
+Sebuah proyek *Data Science* yang komprehensif, mulai dari ekstraksi data ulasan aplikasi Gojek di Google Play Store, pembersihan data (*text preprocessing*), hingga pemodelan *Machine Learning* untuk mengklasifikasikan opini publik menjadi sentimen **Positif**, **Netral**, dan **Negatif**. Proyek ini dibuat sebagai portofolio praktis implementasi NLP untuk Bahasa Indonesia.
+
+---
+
+## 📑 Daftar Isi
+- [Alur Kerja Proyek (Pipeline)](#-alur-kerja-proyek-pipeline)
+- [Fitur Utama](#-fitur-utama)
+- [Hasil dan Performa Model](#-hasil-dan-performa-model)
+- [Struktur Direktori](#-struktur-direktori)
+- [Cara Instalasi & Menjalankan](#-cara-instalasi--menjalankan)
+
+---
+
+## ⚙️ Alur Kerja Proyek (Pipeline)
+
+```mermaid
+graph LR
+    A[Data Scraping<br>Google Play] --> B[Data Profiling]
+    B --> C[Text Preprocessing]
+    C --> D[TF-IDF Vectorization]
+    D --> E[Model Training<br>Logistic Regression]
+    E --> F[Model Evaluation<br>Accuracy & ROC-AUC]
+    
+    style A fill:#4CAF50,stroke:#fff,stroke-width:2px,color:#fff
+    style C fill:#2196F3,stroke:#fff,stroke-width:2px,color:#fff
+    style E fill:#FF9800,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-## 🚀 Cara Menjalankan Proyek Secara Lokal
+*(Catatan: Tahap preprocessing mencakup Case Folding, Regex Cleaning, Slang Normalization, NLTK Tokenization, Stopword Removal, dan Sastrawi Stemming).*
+
+---
+
+## ✨ Fitur Utama
+1. **Automated Scraping**: Mengekstrak 2.000 ulasan pengguna paling baru secara otomatis menggunakan `google-play-scraper`.
+2. **Advanced NLP Preprocessing**:
+   - Pembersihan *noise* (URL, hashtag, mention, angka, emoji).
+   - Pemetaan *dictionary* bahasa gaul/slang Indonesia yang dikustomisasi.
+   - Menggunakan algoritma *Stemming* spesifik Bahasa Indonesia dari perpustakaan Sastrawi.
+3. **Exploratory Data Analysis (EDA)**: Visualisasi *WordCloud* pada frasa dan kata-kata yang paling dominan muncul serta metrik distribusi statistik.
+4. **Klasifikasi Teks Andal**: Menggunakan representasi matriks teks **TF-IDF (5000 *max features*)** yang dilatih menggunakan model prediktif **Logistic Regression**.
+5. **Feature Extraction Interpretation**: Kemampuan model untuk membedah *Top 10 Features* (*koefisien model*) untuk melacak kata apa yang paling memicu suatu ulasan dianggap Positif, Netral, atau Negatif.
+
+---
+
+## 📊 Hasil dan Performa Model
+Model regresi logistik yang dilatih dievaluasi secara komprehensif untuk menguji keampuhan prediksinya. Evaluasi metrik yang disediakan mencakup:
+
+- **Accuracy Score**: Proporsi prediksi sentimen yang berhasil ditebak dengan benar.
+- **Classification Report**: Laporan terperinci mengenai metrik *Precision, Recall,* dan *F1-Score* untuk mengevaluasi bias/kepekaan model pada setiap kelas label.
+- **Confusion Matrix**: Visualisasi menggunakan *Heatmap* untuk menganalisa peta penyebaran kesalahan dan keberhasilan klasifikasi matriks model.
+- **ROC-AUC Score**: Menggunakan parameter komparasi multilabel *One-vs-Rest (OVR)* berbobot rata-rata untuk pengukuran probabilistik statistik.
+
+---
+
+## 📂 Struktur Direktori
+
+```text
+📦 Project-DIP
+ ┣ 📂 data/
+ ┃ ┣ 📂 raw/                 # Data ulasan mentah hasil scraping CSV
+ ┃ ┗ 📂 processed/           # Data teks bersih hasil tahap preprocessing
+ ┣ 📜 Tubes_DIP_LogisticRegression.ipynb # Notebook utama Pipeline NLP
+ ┣ 📜 requirements.txt         # Daftar pustaka (dependencies) Python 
+ ┣ 📜 fix_notebook.py          # Skrip perbaikan kompatibilitas lokal Jupyter
+ ┗ 📜 README.md                # Dokumentasi utama proyek
+```
+
+---
+
+## 🚀 Cara Instalasi & Menjalankan
+
+Langkah-langkah untuk menjalankan ulang dan menguji coba kode secara mandiri di komputer Anda:
 
 1. **Clone repository ini**
    ```bash
-   git clone https://github.com/username-anda/nama-repo.git
-   cd nama-repo
+   git clone https://github.com/rifqidzaki/Project-DIP.git
+   cd Project-DIP
    ```
 
-2. **Buat Virtual Environment (Opsional namun sangat direkomendasikan)**
+2. **Buat & Aktifkan Virtual Environment (Sangat Direkomendasikan)**
    ```bash
    python -m venv venv
-   venv\Scripts\activate     # Untuk Windows
-   # source venv/bin/activate  # Untuk Linux/Mac
+   # Untuk pengguna Windows
+   venv\Scripts\activate     
+   # Untuk pengguna Linux/Mac
+   source venv/bin/activate  
    ```
 
 3. **Install Dependensi Library**
@@ -54,7 +111,6 @@ Proyek ini adalah implementasi alur kerja *Data Science* *end-to-end* yang berfo
    jupyter notebook Tubes_DIP_LogisticRegression.ipynb
    ```
 
-## 📝 Catatan Tambahan
-Data yang dihasilkan berupa CSV akan secara otomatis tersimpan di folder `data/raw` dan `data/processed` saat Anda mengeksekusi semua sel (cell) di dalam *notebook*. 
+---
 
-Proyek ini dibuat untuk pemenuhan Tugas Besar. Silakan pelajari dan kembangkan lebih lanjut!
+> **Penafian / Disclaimer**: Proyek ini dibuat sebagai pemenuhan Tugas Besar pada mata kuliah Data, Informasi, dan Pengetahuan (DIP). Silakan *fork* repositori ini jika ingin mengembangkannya lebih lanjut (misalnya melakukan *Hyperparameter tuning*, mengkomparasikan dengan model *Random Forest / LSTM*, atau *deploy* mengintegrasikannya ke dalam *dashboard Web Streamlit*).
